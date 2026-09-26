@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\caption{Regresión final: Z-Score de Altman $\sim$ Terciarización, Estrés Sistémico e Interacción}
+\label{tab:reg_final}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Variable} & \textbf{Coef.} & \textbf{(SE)} \\
+\midrule
+Constante & $3.6379^{***}$ & $(0.5644)$ \\
+& & \\[-6pt]
+$\Delta$EBITDA/Sales ($\beta_1$) & $-6.6425$ & $(4.6467)$ \\
+& & \\[-6pt]
+MES$_t$ ($\beta_2$) & $1.0498^{**}$ & $(0.4174)$ \\
+& & \\[-6pt]
+$\Delta$EBITDA/Sales $\times$ MES$_t$ ($\beta_3$) & $-22.6137$ & $(30.5814)$ \\
+& & \\[-6pt]
+\midrule
+N & 84 & \\
+$R^2$ & 0.848 & \\
+Adj. $R^2$ & 0.783 & \\
+EF año & Sí & \\
+EF sector & Sí & \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize HC3 robust SE. $^{***}$p$<$0.01, $^{**}$p$<$0.05, $^{*}$p$<$0.10.} \\
+\multicolumn{3}{l}{\footnotesize H1: $\beta_1>0$; H2: $\beta_2<0$; H3: $\beta_3<0$.} \\
+\end{tabular}
+\end{table}
