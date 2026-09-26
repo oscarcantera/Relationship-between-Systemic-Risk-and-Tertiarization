@@ -1,0 +1,33 @@
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+.env/
+.venv/
+env/
+venv/
+
+# Notebooks: checkpoints
+.ipynb_checkpoints/
+
+# Archivos de Jupyter y configuración
+*.ipynb_checkpoints
+
+# Archivos temporales / sistema
+.DS_Store
+Thumbs.db
+
+# Datos locales grandes (no subirlos al repo)
+data/raw/
+data/interim/
+
+mi_proyecto/call-reports-balance-sheets-jan2026.csv
+mi_proyecto_datos\local_db\interim\chicago_fed\call_balance\call-reports-balance-sheets-Jan2026.dta
+mi_proyecto_datos\local_db\interim\chicago_fed\call_income\call-reports-income-statements-Jan2026.dta
+mi_proyecto_datos\local_db\processed\chicago_fed\call-reports-balance-sheets-jan2026.csv
+mi_proyecto_datos\local_db\processed\chicago_fed\call-reports-balance-sheets-jan2026.parquet
+mi_proyecto_datos\local_db\processed\chicago_fed\call-reports-income-statements-jan2026.parquet
+mi_proyecto_datos\local_db\processed\chicago_fed\Variables_MES_banco-trimestre1996.csv
+mi_proyecto_datos\local_db\processed\chicago_fed\Variables_MES_banco-trimestre1996_withMES.csv
+mi_proyecto_datos\local_db\raw\chicago_fed\call_income\call-reports-income-statements-Jan2026.dta
