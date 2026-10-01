@@ -4,8 +4,7 @@ This study links financial and real economies by examining the relationship betw
 ## Description
 This study examines the relationship between systemic risk in the financial system, the tertiarization of economic activity, and the financial fragility of specific business sectors. The analysis connects two dimensions:
 
-The financial dimension, represented by the systemic risk measure known as Marginal Expected Shortfall (MES).
-
+The financial dimension, represented by the systemic risk measure known as Marginal Expected Shortfall (MES). 
 The real and sectoral dimension, approximated through a tertiarization proxy based on changes in the EBITDA-to-sales margin.
 
 Sectoral financial fragility is measured using the Altman Z-Score, which serves as the dependent variable in the final regression.
@@ -23,6 +22,7 @@ The study does not aim to establish a definitive causal relationship, but rather
 The study uses a quantitative, non-experimental approach based on secondary financial, accounting, and sectoral data. The analysis is conducted in four stages:
 
 - Construction of the MES variable.
+  - I analyzed MES to understand its behavior under different market conditions.
 - Construction of the tertiarization proxy.
 - Construction of the Altman Z-Score indicator.
 - Integration of the variables and estimation of the final regression model.
@@ -44,7 +44,45 @@ The variable is initially calculated for each firm and year, after which its val
 
 ### Variables independientes
 #### Marginal Expected Shortfall (MES)
+M𝐸𝑆_i = 𝔼[ 𝑟_i_t| 𝑟_m_t < 𝑄_r_m(𝑝)]
+
+Q_r_m(p) → the p-th percentile of market returns 𝑅_𝑚_t
+
+R_i_t → the stock returns of each institution i in each period 𝑡
+
+R_m_t → the returns of the S&P Financials Index in each period t
+
 MES is used as a measure of exposure to systemic financial risk. It is calculated using the returns of financial institutions and a benchmark financial index during periods of market stress. The MES variable is subsequently aggregated at an annual frequency for inclusion in the final regression model.
+##### MES Regresion 
+
+M𝐸𝑆_𝑖_𝑡 = 𝛼 + 𝛽1∗𝑊𝐹𝑈𝑁𝐷_𝑖 
+            + 𝛽2∗𝐶𝐴𝑅_i
+            + 𝛽3∗𝐶𝐴𝑅𝑇𝐼𝐸𝑅1_i
+            + 𝛽4∗𝑅𝑂𝐴_i
+            + 𝛽5∗𝑁𝑃𝐿_i
+            + 𝛽6∗ 𝐶𝐼𝐿_i
+            + 𝛽7 ∗ 𝐻𝑂𝐿_𝑖
+            + 𝛽8 log (𝐴𝑠𝑠𝑒𝑡𝑠_1_t)+ 𝛿_t +𝜀_i,t
+
+
+
+To identify their influence on changes in the assets’ illiquidity costs, we conduct an analysis across different stress periods: pre-crisis, crisis, and post-crisis. In addition, we examine the different contagion variables within the financial system.
+
+CAR and CARTIER1: book value of equity divided by the book value of total assets.
+
+ROA: return on total assets.
+
+NPL: ratio of non-performing loans to total loans.
+
+LIQ: ratio of liquid assets to total assets.
+
+WFUND: ratio of wholesale funding—excluding short-term deposits—to total liabilities.
+
+CIL: commercial and industrial loans divided by total assets.
+
+HOL: mortgage loans divided by total assets.
+
+log(Assets): logarithm of the bank’s asset share.
 
 #### Tertiarization
 The second independent variable represents the structural transformation of the economy, specifically its tertiarization. This concept is understood as the tendency of capital to shift toward sectors that are closer to final consumption. The measure is inspired by the Hayekian triangle and Roger W. Garrison’s theory of capital.
@@ -55,7 +93,7 @@ The tertiarization variable is constructed using a proxy for firm's operational 
 
 Altman_s,t = α + β1 Δ(EBITDA/Sales)_s,t
                   + β2 MES_t
-                  + β3 [Δ(EBITDA/Sales)_s,t × MES_t]
+                  + β3 [Δ(EBITDA/Sales)_s,t * MES_t]
                   + ε_s,t
                   
 - Altman_s,t is the annual sectoral average of the Altman Z-Score.
@@ -101,7 +139,7 @@ The original data are not included, either in whole or in part, when the source�
 ## Processed Data
 The dataset used in the final estimation is located at:
 
-'data/processed/base_regresion_final.csv'
+'./mi_proyecto_datos/local_db/processed/....'
 
 This dataset contains, at a minimum, the following variables:
 
@@ -130,7 +168,7 @@ This file documents:
 - The treatment of outliers.
 
 ## Repository Structure
- 
+ <pre> 
 mi_proyecto/ 
 ├── README.md 
 ├── requirements.txt 
@@ -154,13 +192,12 @@ mi_proyecto/
 │ 
 ├── notebooks/ 
 │   ├── 01_exploracion_local.ipynb 
-│   ├── 02_descarga_edgar.ipynb 
-│   └── 03_fusion_local_edgar.ipynb 
-│   └── 04_import_chicago_fed.ipynb 
-│   └── 05_econometrics.ipynb 
-|   └── 06_import_avalue
-|   └── 07_MES
-|   └── 08_regresion_altman
+│   ├── 02_1_MES_import_balance_income.ipynb 
+│   └── 02_2_MES_fusion_local.ipynb 
+│   └── 03_MES.ipynb 
+│   └── 04_import_avalue.ipynb 
+|   └── 05_regresion_altmant_MES_tertiaritation.ipynb
+| 
 |
 ├── docs/ 
 │   ├── data_dictionary.csv 
@@ -169,24 +206,26 @@ mi_proyecto/
 └── results/ 
     ├── figures/ 
     └── tables/
-
-
+</pre>
+<pre>
+mi_proyecto_datos 
+│
+└── local_db
+  │
+  ├── ditionary_data_names
+  ├── raw/
+  │   └── .gitkeep
+  ├── interim/
+  │   └── .gitkeep
+  └── processed/
+      └── .gitkeep
+</pre>
 - `notebooks/`: análisis reproducible en Jupyter.
 - `src/`: funciones y scripts de Python.
 - `data/`: datos de ejemplo o instrucciones de acceso.
 - `results/`: tablas y gráficos generados.
 - `docs/`: memoria y presentación.
 
-External sources
-
-data/
-├── README.md
-├── raw/
-│   └── .gitkeep
-├── interim/
-│   └── .gitkeep
-└── processed/
-    └── .gitkeep
 
 
 ## Instalation 
